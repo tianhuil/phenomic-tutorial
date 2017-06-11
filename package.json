@@ -20,5 +20,9 @@
     "presets": [
       "@phenomic/preset-react-app"
     ]
+  },
+  "scripts": {
+    "start": "phenomic start",
+    "build": "phenomic build"
   }
 }
