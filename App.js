@@ -2,6 +2,18 @@ import React from "react"
 import { Router, Route, browserHistory, Link } from "react-router"
 import { createApp, createContainer, query, BodyRenderer, renderApp } from "@phenomic/preset-react-app/lib/client"
 
+const PageError = ({ error }) => {
+  const status = error && error.status || 404
+  const message = error && status !== 404 ? error.statusText : "Page not found"
+
+  return (
+    <Layout>
+      <h1>Error: {status}</h1>
+      <p>{message}</p>
+    </Layout>
+  )
+}
+
 const Layout = ({children}) => (
   <div>
     <header>
@@ -62,6 +74,7 @@ const routes = () => (
     <Route path="/" component={ HomeContainer } />
     <Route path="/after/:after" component={ HomeContainer } />
     <Route path="/blog/*" component={ BlogPostContainer } collection="posts" />
+    <Route path="*" component={ PageError } />
   </Router>
 )
 
