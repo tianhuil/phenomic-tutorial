@@ -2,8 +2,20 @@ import React from "react"
 import { Router, Route, browserHistory, Link } from "react-router"
 import { createApp, createContainer, query, BodyRenderer } from "@phenomic/preset-react-app/lib/client"
 
-const Home =  ({ posts }) => (
+const Layout = ({children}) => (
   <div>
+    <header>
+      <p>Header</p>
+    </header>
+    <div>{ children }</div>
+    <footer>
+      <p>Footer</p>
+    </footer>
+  </div>
+)
+
+const Home =  ({ posts }) => (
+  <Layout>
     <h1>Home</h1>
     <ul>
       { posts && posts.node && posts.node.list &&
@@ -18,7 +30,7 @@ const Home =  ({ posts }) => (
       posts.node && posts.node.hasNextPage &&
       <Link to={ `/after/${ posts.node.next }`}>Older posts</Link>
     }
-  </div>
+  </Layout>
 )
 
 const HomeContainer = createContainer(Home, (props) => ({
@@ -31,14 +43,14 @@ const HomeContainer = createContainer(Home, (props) => ({
 }))
 
 const BlogPost = ({ page }) => (
-  <div>
+  <Layout>
     {page.node && (
       <article>
         <h1>{ page.node.title }</h1>
         <BodyRenderer>{ page.node.body }</BodyRenderer>
       </article>
     )}
-  </div>
+  </Layout>
 )
 
 const BlogPostContainer = createContainer(BlogPost, (props) => ({
