@@ -18,7 +18,7 @@ const Home =  ({ posts }) => (
 )
 
 const HomeContainer = createContainer(Home, (props) => ({
-  posts: query({collection: "posts"}),
+  posts: query({collection: "posts", sortBy: "date"}),
 }))
 
 const BlogPost = ({ page }) => (
