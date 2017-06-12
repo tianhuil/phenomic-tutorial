@@ -2,6 +2,8 @@ import React from "react"
 import { Router, Route, browserHistory, Link } from "react-router"
 import { createApp, createContainer, query, BodyRenderer, renderApp } from "@phenomic/preset-react-app/lib/client"
 
+import { Layout }  from "./app/layout"
+
 const PageError = ({ error }) => {
   const status = error && error.status || 404
   const message = error && status !== 404 ? error.statusText : "Page not found"
@@ -13,18 +15,6 @@ const PageError = ({ error }) => {
     </Layout>
   )
 }
-
-const Layout = ({children}) => (
-  <div>
-    <header>
-      <p>Header</p>
-    </header>
-    <div>{ children }</div>
-    <footer>
-      <p>Footer</p>
-    </footer>
-  </div>
-)
 
 const Home =  ({ posts }) => (
   <Layout>
