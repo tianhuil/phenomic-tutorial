@@ -1,6 +1,6 @@
 import React from "react"
 import { Router, Route, browserHistory, Link } from "react-router"
-import { createApp, createContainer, query, BodyRenderer } from "@phenomic/preset-react-app/lib/client"
+import { createApp, createContainer, query, BodyRenderer, renderApp } from "@phenomic/preset-react-app/lib/client"
 
 const Layout = ({children}) => (
   <div>
@@ -57,10 +57,16 @@ const BlogPostContainer = createContainer(BlogPost, (props) => ({
   page: query({ collection: "posts", id: props.params.splat }),
 }))
 
-export default createApp(() => (
+const routes = () => (
   <Router history={ browserHistory }>
     <Route path="/" component={ HomeContainer } />
     <Route path="/after/:after" component={ HomeContainer } />
     <Route path="/blog/*" component={ BlogPostContainer } collection="posts" />
   </Router>
-))
+)
+
+export default createApp(routes)
+
+if (module.hot) {
+  module.hot.accept(() => renderApp(routes))
+}
