@@ -4,7 +4,9 @@
   "description": "Personal Homepage",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "phenomic start",
+    "build": "phenomic build",
+    "h2": "phenomic -h"
   },
   "author": "Tianhui Michael Li",
   "license": "MIT BSD",
@@ -21,8 +23,7 @@
       "@phenomic/preset-react-app"
     ]
   },
-  "scripts": {
-    "start": "phenomic start",
-    "build": "phenomic build"
+  "dependencies": {
+    "react-bootstrap": "^0.31.0"
   }
 }
