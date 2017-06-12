@@ -1,12 +1,25 @@
 import React from "react"
-import { Router, Route, browserHistory } from "react-router"
+import { Router, Route, browserHistory, Link } from "react-router"
 import { createApp, createContainer, query, BodyRenderer } from "@phenomic/preset-react-app/lib/client"
 
-const Home = () => (
+const Home =  ({ posts }) => (
   <div>
-    <p>This is a homepage</p>
+    <h1>Home</h1>
+    <ul>
+      { posts && posts.node && posts.node.list &&
+        posts.node.list.map((post) => (
+          <li key={post.id}>
+            <Link to={ `/blog/${ post.id }`}>{ post.title || post.id }</Link>
+          </li>
+        ))
+      }
+    </ul>
   </div>
 )
+
+const HomeContainer = createContainer(Home, (props) => ({
+  posts: query({collection: "posts"}),
+}))
 
 const BlogPost = ({ page }) => (
   <div>
@@ -25,7 +38,7 @@ const BlogPostContainer = createContainer(BlogPost, (props) => ({
 
 export default createApp(() => (
   <Router history={ browserHistory }>
-    <Route path="/" component={ Home } />
+    <Route path="/" component={ HomeContainer } />
     <Route path="/blog/*" component={ BlogPostContainer } collection="posts" />
   </Router>
 ))
