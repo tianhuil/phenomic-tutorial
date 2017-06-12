@@ -14,11 +14,20 @@ const Home =  ({ posts }) => (
         ))
       }
     </ul>
+    {
+      posts.node && posts.node.hasNextPage &&
+      <Link to={ `/after/${ posts.node.next }`}>Older posts</Link>
+    }
   </div>
 )
 
 const HomeContainer = createContainer(Home, (props) => ({
-  posts: query({collection: "posts", sortBy: "date"}),
+  posts: query({
+    collection: "posts",
+    sortBy: "date",
+    limit: 5,
+    after: props.params.after,
+  }),
 }))
 
 const BlogPost = ({ page }) => (
@@ -39,6 +48,7 @@ const BlogPostContainer = createContainer(BlogPost, (props) => ({
 export default createApp(() => (
   <Router history={ browserHistory }>
     <Route path="/" component={ HomeContainer } />
+    <Route path="/after/:after" component={ HomeContainer } />
     <Route path="/blog/*" component={ BlogPostContainer } collection="posts" />
   </Router>
 ))
