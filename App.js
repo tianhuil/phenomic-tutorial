@@ -4,18 +4,7 @@ import { createApp, createContainer, query, BodyRenderer, renderApp } from "@phe
 import { Layout }  from "./app/layout"
 import { HomeContainer } from "./app/home"
 import { BlogPostContainer } from "./app/blog"
-
-const PageError = ({ error }) => {
-  const status = error && error.status || 404
-  const message = error && status !== 404 ? error.statusText : "Page not found"
-
-  return (
-    <Layout>
-      <h1>Error: {status}</h1>
-      <p>{message}</p>
-    </Layout>
-  )
-}
+import { PageError } from "./app/page-error"
 
 const routes = () => (
   <Router history={ browserHistory }>
