@@ -1,8 +1,8 @@
 import React from "react"
 import { Router, Route, browserHistory, Link } from "react-router"
 import { createApp, createContainer, query, BodyRenderer, renderApp } from "@phenomic/preset-react-app/lib/client"
-
 import { Layout }  from "./app/layout"
+import { HomeContainer } from "./app/home"
 
 const PageError = ({ error }) => {
   const status = error && error.status || 404
@@ -15,34 +15,6 @@ const PageError = ({ error }) => {
     </Layout>
   )
 }
-
-const Home =  ({ posts }) => (
-  <Layout>
-    <h1>Home</h1>
-    <ul>
-      { posts && posts.node && posts.node.list &&
-        posts.node.list.map((post) => (
-          <li key={post.id}>
-            <Link to={ `/blog/${ post.id }`}>{ post.title || post.id }</Link>
-          </li>
-        ))
-      }
-    </ul>
-    {
-      posts.node && posts.node.hasNextPage &&
-      <Link to={ `/after/${ posts.node.next }`}>Older posts</Link>
-    }
-  </Layout>
-)
-
-const HomeContainer = createContainer(Home, (props) => ({
-  posts: query({
-    collection: "posts",
-    sortBy: "date",
-    limit: 5,
-    after: props.params.after,
-  }),
-}))
 
 const BlogPost = ({ page }) => (
   <Layout>
