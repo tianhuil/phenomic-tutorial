@@ -15,14 +15,14 @@ const Home = ({ posts }) => (
       { posts && posts.node && posts.node.list &&
         posts.node.list.map((post) => (
           <li key={post.id}>
-            <Link to={ `/blog/${ post.id }`}>{ post.title || post.id }</Link>
+            <Link to={ `blog/${ post.id }`}>{ post.title || post.id }</Link>
           </li>
         ))
       }
     </ul>
     {
       posts.node && posts.node.hasNextPage &&
-      <Link to={ `/after/${ posts.node.next }`}>Older posts</Link>
+      <Link to={ `after/${ posts.node.next }`}>Older posts</Link>
     }
   </Layout>
 )
