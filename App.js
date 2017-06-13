@@ -3,6 +3,7 @@ import { Router, Route, browserHistory, Link } from "react-router"
 import { createApp, createContainer, query, BodyRenderer, renderApp } from "@phenomic/preset-react-app/lib/client"
 import { Layout }  from "./app/layout"
 import { HomeContainer } from "./app/home"
+import { BlogPostContainer } from "./app/blog"
 
 const PageError = ({ error }) => {
   const status = error && error.status || 404
@@ -15,21 +16,6 @@ const PageError = ({ error }) => {
     </Layout>
   )
 }
-
-const BlogPost = ({ page }) => (
-  <Layout>
-    {page.node && (
-      <article>
-        <h1>{ page.node.title }</h1>
-        <BodyRenderer>{ page.node.body }</BodyRenderer>
-      </article>
-    )}
-  </Layout>
-)
-
-const BlogPostContainer = createContainer(BlogPost, (props) => ({
-  page: query({ collection: "posts", id: props.params.splat }),
-}))
 
 const routes = () => (
   <Router history={ browserHistory }>
