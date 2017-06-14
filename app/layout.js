@@ -24,7 +24,6 @@ const NavbarInstance = () => (
 
 export const Layout = ({children}) => (
   <div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/latest/react-bootstrap.min.js"></script>
     <div class="container">
       <NavbarInstance/>
       <Grid>
