@@ -6,7 +6,7 @@
   "scripts": {
     "start": "phenomic start",
     "build": "phenomic build",
-    "deploy": "git subtree push --prefix dist origin gh-pages"
+    "deploy": "./build/deploy.sh"
   },
   "author": "Tianhui Michael Li",
   "license": "MIT BSD",
