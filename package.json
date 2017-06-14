@@ -23,7 +23,7 @@
       "@phenomic/preset-react-app"
     ]
   },
-  "repository": "https://github.com/tianhuil/phenomic-tutorial",
+  "repository": "git@github.com:tianhuil/phenomic-tutorial.git",
   "dependencies": {
     "react-bootstrap": "^0.31.0",
     "react-helmet": "^5.1.3"

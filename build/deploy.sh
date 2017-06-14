@@ -1,5 +1,7 @@
-echo "Deploying current `dist` to `gh-pages`"
+echo "Deploying current dist to gh-pages"
 # git subtree push --prefix dist origin gh-pages
+
+GIT_DEPLOY_REPO=${GIT_DEPLOY_REPO:-$(node -e 'process.stdout.write(require("./package.json").repository)')}
 
 CUR_DIR=`pwd`
 reset_dir () {
@@ -19,7 +21,7 @@ $(npm bin)/rimraf .git
 git init && \
 git add . && \
 git commit -m "Deploy to GitHub Pages $dt" && \
-git push --force "${GIT_DEPLOY_REPO}" master:gh-pages \
+git push --force "${GIT_DEPLOY_REPO}" master:gh-pages && \
 git tag -a "Deploy$ts" -m "Deploy to GitHub Pages $dt"
 
 echo "Deploy complete."
