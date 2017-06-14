@@ -9,8 +9,8 @@ import { PageError } from "./app/page-error"
 const routes = () => (
   <Router history={ browserHistory }>
     <Route path="/" component={ HomeContainer } />
-    <Route path="/after/:after" component={ HomeContainer } />
-    <Route path="/blog/*" component={ BlogPostContainer } collection="posts" />
+    <Route path="after/:after" component={ HomeContainer } />
+    <Route path="blog/*" component={ BlogPostContainer } collection="posts" />
     <Route path="*" component={ PageError } />
   </Router>
 )
