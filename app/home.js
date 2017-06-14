@@ -3,6 +3,7 @@ import { Link } from "react-router"
 import { createContainer, query } from "@phenomic/preset-react-app/lib/client"
 import { Layout } from './layout'
 import { Helmet } from 'react-helmet'
+import './home.css'
 
 const Home = ({ posts }) => (
   <Layout>
